@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+<h2>Tasks Due Today</h2>
+<ul>
+    {% for task in tasks_due_today %}
+    <li>{{ task.title }} (Due Date: {{ task.due_date }})</li>
+    {% else %}
+    <li>No tasks due today.</li>
+    {% endfor %}
+</ul>
+
+<h2>Overdue Tasks</h2>
+<ul>
+    {% for task in tasks_overdue %}
+    <li>{{ task.title }} (Due Date: {{ task.due_date }})</li>
+    {% else %}
+    <li>No overdue tasks.</li>
+    {% endfor %}
+</ul>
+
+<h2>Tasks by Priority</h2>
+<ul>
+    <li>Low: {{ tasks_by_priority['Low'] }}</li>
+    <li>Medium: {{ tasks_by_priority['Medium'] }}</li>
+    <li>High: {{ tasks_by_priority['High'] }}</li>
+</ul>
+{% endblock %}

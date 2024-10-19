@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Task Form{% endblock %}
+
+{% block content %}
+<h1>{% if form.id.data %}Edit Task{% else %}New Task{% endif %}</h1>
+<form method="POST" action="{{ url_for('edit_task', id=form.id.data) if form.id.data else url_for('new_task') }}">
+    {{ form.hidden_tag() }}
+    <div>
+        <label for="title">Title:</label>
+        {{ form.title(class="form-control") }}
+        {% for error in form.title.errors %}
+        <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        {{ form.description(class="form-control") }}
+        {% for error in form.description.errors %}
+        <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div>
+        <label for="due_date">Due Date:</label>
+        {{ form.due_date(class="form-control") }}
+        {% for error in form.due_date.errors %}
+        <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div>
+        <label for="priority">Priority:</label>
+        {{ form.priority(class="form-control") }}
+        {% for error in form.priority.errors %}
+        <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div>
+        <label for="status">Status:</label>
+        {{ form.status(class="form-control") }}
+        {% for error in form.status.errors %}
+        <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>
+{% endblock %}
